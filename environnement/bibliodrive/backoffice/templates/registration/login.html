@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 to-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-xl shadow-2xl p-8 space-y-8">
+        <!-- Logo/Titre -->
+        <div class="text-center">
+            <i class="fas fa-book-open text-indigo-600 text-4xl mb-4"></i>
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                Connexion à BiblioDrive
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Accédez à votre espace bibliothèque
+            </p>
+        </div>
+
+        <!-- Formulaire -->
+        <form class="mt-8 space-y-6" method="POST">
+            {% csrf_token %}
+            <div class="rounded-md shadow-sm space-y-4">
+                <!-- Champ Identifiant -->
+                <div>
+                    <label for="username" class="sr-only">Identifiant</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input id="username" name="username" type="text" required 
+                               class="appearance-none relative block w-full px-3 py-3 pl-10 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                               placeholder="Identifiant">
+                    </div>
+                </div>
+                
+                <!-- Champ Mot de passe -->
+                <div>
+                    <label for="password" class="sr-only">Mot de passe</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input id="password" name="password" type="password" required
+                               class="appearance-none relative block w-full px-3 py-3 pl-10 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
+                               placeholder="Mot de passe">
+                    </div>
+                </div>
+
+                <!-- Bouton Submit -->
+                <div>
+                    <button type="submit" 
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <i class="fas fa-sign-in-alt text-indigo-200 group-hover:text-indigo-100"></i>
+                        </span>
+                        Se connecter
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

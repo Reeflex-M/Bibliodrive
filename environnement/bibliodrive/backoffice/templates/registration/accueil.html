@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    {% extends 'base.html' %}
+
+    {% block title %}Accueil{% endblock %}
+
+    {% block content %}
+    <div class="max-w-7xl mx-auto py-10 px-4">
+        <!-- Section bvn -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold mb-4 text-indigo-600">Votre super bibliothèque</h1>
+            <p class="text-lg text-gray-800">Ici, on est la pour lire</p>
+        </div>
+
+        <!-- Section stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Card authors -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-indigo-100 rounded-full">
+                        <i class="fas fa-user text-indigo-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Nombre d'auteurs</p>
+                        <p class="text-2xl font-bold text-indigo-600">{{ author_count }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte publishers-->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-indigo-100 rounded-full">
+                        <i class="fas fa-book text-indigo-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Nombre d'éditeurs</p>
+                        <p class="text-2xl font-bold text-indigo-600">{{ publisher_count }}</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Carte book -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-indigo-100 rounded-full">
+                        <i class="fas fa-book text-indigo-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Nombre de Livres</p>
+                        <p class="text-2xl font-bold text-indigo-600">{{ book_count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

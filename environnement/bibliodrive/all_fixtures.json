@@ -1,0 +1,227 @@
+[
+    {
+        "model": "backoffice.Author",
+        "pk": 1,
+        "fields": {
+            "author": "Author 1",
+            "year_born": 1970
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 2,
+        "fields": {
+            "author": "Author 2",
+            "year_born": 1980
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 3,
+        "fields": {
+            "author": "Author 3",
+            "year_born": 1990
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 4,
+        "fields": {
+            "author": "Author 4",
+            "year_born": 1960
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 5,
+        "fields": {
+            "author": "Author 5",
+            "year_born": 1950
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 1,
+        "fields": {
+            "name": "Publisher 1",
+            "company_name": "Company 1",
+            "address": "Address 1",
+            "city": "City 1",
+            "state": "State 1",
+            "zip_code": "Zip 1",
+            "telephone": "Phone 1",
+            "fax": "Fax 1",
+            "comments": "Comments 1"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 2,
+        "fields": {
+            "name": "Publisher 2",
+            "company_name": "Company 2",
+            "address": "Address 2",
+            "city": "City 2",
+            "state": "State 2",
+            "zip_code": "Zip 2",
+            "telephone": "Phone 2",
+            "fax": "Fax 2",
+            "comments": "Comments 2"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 3,
+        "fields": {
+            "name": "Publisher 3",
+            "company_name": "Company 3",
+            "address": "Address 3",
+            "city": "City 3",
+            "state": "State 3",
+            "zip_code": "Zip 3",
+            "telephone": "Phone 3",
+            "fax": "Fax 3",
+            "comments": "Comments 3"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 1,
+        "fields": {
+            "title": "Title 1",
+            "year_published": 2001,
+            "isbn": "ISBN001",
+            "pubid": 1,
+            "description": "Description 1",
+            "notes": "Notes 1",
+            "subject": "Subject 1",
+            "comments": "Comments 1"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 2,
+        "fields": {
+            "title": "Title 2",
+            "year_published": 2002,
+            "isbn": "ISBN002",
+            "pubid": 1,
+            "description": "Description 2",
+            "notes": "Notes 2",
+            "subject": "Subject 2",
+            "comments": "Comments 2"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 3,
+        "fields": {
+            "title": "Title 3",
+            "year_published": 2003,
+            "isbn": "ISBN003",
+            "pubid": 2,
+            "description": "Description 3",
+            "notes": "Notes 3",
+            "subject": "Subject 3",
+            "comments": "Comments 3"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 4,
+        "fields": {
+            "title": "Title 4",
+            "year_published": 2004,
+            "isbn": "ISBN004",
+            "pubid": 2,
+            "description": "Description 4",
+            "notes": "Notes 4",
+            "subject": "Subject 4",
+            "comments": "Comments 4"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 5,
+        "fields": {
+            "title": "Title 5",
+            "year_published": 2005,
+            "isbn": "ISBN005",
+            "pubid": 3,
+            "description": "Description 5",
+            "notes": "Notes 5",
+            "subject": "Subject 5",
+            "comments": "Comments 5"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 6,
+        "fields": {
+            "title": "Title 6",
+            "year_published": 2006,
+            "isbn": "ISBN006",
+            "pubid": 3,
+            "description": "Description 6",
+            "notes": "Notes 6",
+            "subject": "Subject 6",
+            "comments": "Comments 6"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 7,
+        "fields": {
+            "title": "Title 7",
+            "year_published": 2007,
+            "isbn": "ISBN007",
+            "pubid": 1,
+            "description": "Description 7",
+            "notes": "Notes 7",
+            "subject": "Subject 7",
+            "comments": "Comments 7"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 8,
+        "fields": {
+            "title": "Title 8",
+            "year_published": 2008,
+            "isbn": "ISBN008",
+            "pubid": 2,
+            "description": "Description 8",
+            "notes": "Notes 8",
+            "subject": "Subject 8",
+            "comments": "Comments 8"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 9,
+        "fields": {
+            "title": "Title 9",
+            "year_published": 2009,
+            "isbn": "ISBN009",
+            "pubid": 3,
+            "description": "Description 9",
+            "notes": "Notes 9",
+            "subject": "Subject 9",
+            "comments": "Comments 9"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": 10,
+        "fields": {
+            "title": "Title 10",
+            "year_published": 2010,
+            "isbn": "ISBN010",
+            "pubid": 1,
+            "description": "Description 10",
+            "notes": "Notes 10",
+            "subject": "Subject 10",
+            "comments": "Comments 10"
+        }
+    }
+]

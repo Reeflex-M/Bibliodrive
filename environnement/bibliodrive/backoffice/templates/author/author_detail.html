@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'auteur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    {% extends 'base.html' %}
+
+    {% block title %}Détail de {{ author.author }}{% endblock %}
+
+    {% block content %}
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto">
+            <!-- En-tête -->
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-xl p-8 text-white">
+                <h1 class="text-3xl font-bold">
+                    <i class="fas fa-user-circle text-4xl mb-4 block opacity-90"></i>
+                    {{ author.author }}
+                </h1>
+                <p class="text-indigo-100 mt-2">Fiche détaillée de l'auteur</p>
+            </div>
+
+            <!-- Corps -->
+            <div class="bg-white shadow-xl rounded-b-xl border border-gray-100 p-8">
+                <div class="space-y-6">
+                    <!-- Nom libelle -->
+                    <div class="bg-gray-50 rounded-lg p-6 transform hover:scale-102 transition-transform duration-200">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-indigo-100 p-3 rounded-full">
+                                <i class="fas fa-user text-indigo-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Nom</p>
+                                <p class="text-lg font-semibold text-gray-800">{{ author.author }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Annee libelle -->
+                    <div class="bg-gray-50 rounded-lg p-6 transform hover:scale-102 transition-transform duration-200">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-indigo-100 p-3 rounded-full">
+                                <i class="fas fa-calendar text-indigo-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Année de naissance</p>
+                                <p class="text-lg font-semibold text-gray-800">{{ author.year_born }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton -->
+                    <div class="flex justify-center mt-8">
+                        <a href="{% url 'author-list' %}" 
+                           class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                            <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                            Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

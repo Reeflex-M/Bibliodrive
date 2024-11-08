@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publisher Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    {% extends 'base.html' %}
+
+    {% block title %}Publisher Detail{% endblock %}
+
+    {% block content %}
+    <div class="max-w-4xl mx-auto py-10">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h1 class="text-3xl font-bold mb-4 text-indigo-600">Détail de l'éditeur: {{ publisher.name }}</h1>
+            <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Nom de l'entreprise -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-building text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Nom de l'entreprise</p>
+                                <p class="text-lg font-medium">{{ publisher.company_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adresse -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Adresse</p>
+                                <p class="text-lg font-medium">{{ publisher.address }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ville -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-city text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Ville</p>
+                                <p class="text-lg font-medium">{{ publisher.city }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- État -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">État</p>
+                                <p class="text-lg font-medium">{{ publisher.state }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code postal -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-pin text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Code postal</p>
+                                <p class="text-lg font-medium">{{ publisher.zip_code }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Téléphone -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Téléphone</p>
+                                <p class="text-lg font-medium">{{ publisher.telephone }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Fax -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-fax text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Fax</p>
+                                <p class="text-lg font-medium">{{ publisher.fax }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commentaires -->
+                    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-comments text-indigo-500"></i>
+                            <div>
+                                <p class="text-sm text-gray-500">Commentaires</p>
+                                <p class="text-lg font-medium">{{ publisher.comments }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-6">
+                <a href="{% url 'publisher-list' %}" 
+                   class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md transition-colors duration-200">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+    </div>
+    {% endblock %}
+</body>
+</html>

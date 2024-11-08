@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du livre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <main>
+        {% extends 'base.html' %}
+        {% block title %}Détail du livre{% endblock %}
+
+        {% block content %}
+            <div class="container mx-auto px-4 py-12">
+                <div class="max-w-4xl mx-auto">
+                    <!-- En-tête-->
+                    <div class="bg-gradient-to-r from-blue-600 to-teal-600 rounded-t-xl p-8 text-white">
+                        <h1 class="text-3xl font-bold">
+                            <i class="fas fa-book-open text-4xl mb-4 block opacity-90"></i>
+                            {{ book.title }}
+                        </h1>
+                        <p class="text-blue-100 mt-2">Détails du livre</p>
+                    </div>
+
+                    <!-- Corps -->
+                    <div class="bg-white shadow-xl rounded-b-xl border border-gray-100 p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Titre -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-book text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Titre</p>
+                                        <p class="text-lg font-medium">{{ book.title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ISBN -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-barcode text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">ISBN</p>
+                                        <p class="text-lg font-medium">{{ book.isbn }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Année de publication -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-calendar text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Année de publication</p>
+                                        <p class="text-lg font-medium">{{ book.year_published }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Éditeur -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-building text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Éditeur</p>
+                                        <p class="text-lg font-medium">{{ book.pubid.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200 md:col-span-2">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-align-left text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Description</p>
+                                        <p class="text-lg font-medium">{{ book.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sujet -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-tag text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Sujet</p>
+                                        <p class="text-lg font-medium">{{ book.subject }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-sticky-note text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Notes</p>
+                                        <p class="text-lg font-medium">{{ book.notes }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Commentaires -->
+                            <div class="mt-6 bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-100 p-3 rounded-full">
+                                        <i class="fas fa-comments text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Commentaires</p>
+                                        <p class="text-lg font-medium">{{ book.comments }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton de retour -->
+                    <div class="flex justify-center mt-8">
+                        <a href="{% url 'book-list' %}" 
+                           class="group flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-teal-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                            <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                            Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; Bibliodrive {{ year }}. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
