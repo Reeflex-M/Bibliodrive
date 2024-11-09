@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Author, Publisher, TitleAuthor, Title
+from django.contrib.auth.decorators import login_required
 
+#accueil views
 def accueil(request):
     author_count = Author.objects.count()
     publisher_count = Publisher.objects.count()
@@ -13,20 +16,23 @@ def accueil(request):
         'publisher_count': publisher_count,
         'book_count': Title.objects.count() 
     }
-    
     return render(request, template_name='registration/accueil.html', context=context)
 
+
+#registration views
 def registration(request):
     return render(request, template_name='registration/registration.html', context={ 'active_nav':'registration'})
 
+
+#author views
 def author_detail(request, author_id):
     author = get_object_or_404(Author, au_id=author_id)
     return render(request, 'author/author_detail.html', {'author': author})
 
-
 def author_list(request):
     authors = Author.objects.all()
     return render(request, 'author/author_list.html', {'authors': authors, 'active_nav': 'author'})
+
 
 #book views
 def book_detail(request, isbn):  # utiliser isbn au lieu de book_id
@@ -37,6 +43,28 @@ def book_list(request):
     objects = Title.objects.all().order_by('title')
     return render(request, template_name='book/book_list.html', context={'objects':objects, 'active_nav':'book'})
 
+@login_required
+def reserve_book(request, isbn):
+    book = get_object_or_404(Title, isbn=isbn)
+    if book.reserve_by is None:
+        book.reserve_by = request.user
+        book.save()
+        messages.success(request, f"Le livre '{book.title}' a été réservé avec succès.")
+    else:
+        messages.error(request, "Ce livre est déjà réservé.")
+    return redirect('book-list')
+
+@login_required
+def cancel_reserve_book(request, isbn):
+    book = get_object_or_404(Title, isbn=isbn)
+    if book.reserve_by == request.user:
+        book.reserve_by = None
+        book.save()
+        messages.success(request, f"La réservation du livre '{book.title}' a été annulée.")
+    else:
+        messages.error(request, "Vous ne pouvez pas annuler cette réservation.")
+    return redirect('book-list')
+
 
 #publisher views
 def publisher_detail(request, publisher_id):
@@ -46,7 +74,6 @@ def publisher_detail(request, publisher_id):
 def publisher_list(request):
     publishers = Publisher.objects.all()
     return render(request, 'publisher/publisher_list.html', {'publishers': publishers, 'active_nav':'publisher'})
-
 
 def login_view(request):
     if request.method == 'POST':

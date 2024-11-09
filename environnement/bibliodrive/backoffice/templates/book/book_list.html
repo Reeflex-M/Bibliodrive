@@ -70,11 +70,26 @@
                             En savoir plus
                         </a>
                         {% if user.is_authenticated %}
-                            <a href="#" 
-                               class="block w-full text-center px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white text-sm font-medium rounded-md hover:from-green-700 hover:to-emerald-700 transition-colors duration-200">
-                                <i class="fas fa-bookmark mr-2"></i>
-                                Réserver
-                            </a>
+                            {% if book.reserve_by %}
+                                {% if book.reserve_by == user %}
+                                    <a href="{% url 'cancel-reserve-book' book.isbn %}" 
+                                       class="block w-full text-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-md hover:from-red-600 hover:to-red-700 transition-colors duration-200">
+                                        <i class="fas fa-times-circle mr-2"></i>
+                                        Annuler la réservation
+                                    </a>
+                                {% else %}
+                                    <button class="block w-full text-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-md cursor-not-allowed" disabled>
+                                        <i class="fas fa-lock mr-2"></i>
+                                        Réservé par {{ book.reserve_by }}
+                                    </button>
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'reserve-book' book.isbn %}" 
+                                   class="block w-full text-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium rounded-md hover:from-green-600 hover:to-green-700 transition-colors duration-200">
+                                    <i class="fas fa-bookmark mr-2"></i>
+                                    Réserver
+                                </a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

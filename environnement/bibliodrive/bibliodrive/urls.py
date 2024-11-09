@@ -18,6 +18,8 @@ urlpatterns = [
 
     path('book/<str:isbn>', views.book_detail, name="book-detail"),
     path('books/', views.book_list, name="book-list"),
+    path('book/reserve/<str:isbn>/', views.reserve_book, name='reserve-book'),
+    path('book/cancel-reserve/<str:isbn>/', views.cancel_reserve_book, name='cancel-reserve-book'),
     
     
     

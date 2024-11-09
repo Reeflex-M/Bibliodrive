@@ -75,7 +75,7 @@
                                     </div>
                                     <div>
                                         <p class="text-sm text-gray-500">Éditeur</p>
-                                        <p class="text-lg font-medium">{{ book.pubid.name }}</p>
+                                        <a href="{% url 'publisher-detail' publisher_id=book.pubid.pk %}" class="text-lg font-medium text-blue-600 hover:text-blue-800">{{ book.pubid.name }}</a>
                                     </div>
                                 </div>
                             </div>
