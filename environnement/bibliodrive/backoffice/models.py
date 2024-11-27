@@ -49,6 +49,33 @@ class Title(models.Model):
     subject = models.CharField(max_length=50)
     comments = models.TextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    GENRE_CHOICES = [
+        ('ROMAN', 'Roman'),
+        ('SCIENCE', 'Science'),
+        ('HISTOIRE', 'Histoire'),
+        ('POLICIER', 'Policier'),
+        ('FANTASY', 'Fantasy'),
+        ('BIOGRAPHIE', 'Biographie'),
+        ('AUTRE', 'Autre'),
+    ]
+    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default='AUTRE')
 
     def __str__(self):
         return self.title
+
+class ReservationHistory(models.Model):
+    book = models.ForeignKey(Title, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reserved_at = models.DateTimeField(auto_now_add=True)
+    cancelled_at = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=20, choices=[
+        ('ACTIVE', 'Active'),
+        ('CANCELLED', 'Annulée'),
+        ('COMPLETED', 'Terminée')
+    ])
+
+    class Meta:
+        ordering = ['-reserved_at']
+
+    def __str__(self):
+        return f"{self.book.title} - {self.user.username} - {self.status}"

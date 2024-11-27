@@ -3,11 +3,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-from .models import Author, Publisher, TitleAuthor, Title
+from .models import Author, Publisher, TitleAuthor, Title, ReservationHistory
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.utils import timezone
 
 #accueil views
 def accueil(request):
@@ -82,8 +83,19 @@ def book_detail(request, isbn):  # utiliser isbn au lieu de book_id
     return render(request, 'book/book_detail.html', {'book': book})
 
 def book_list(request):
+    selected_genre = request.GET.get('genre', '')
+    
     objects = Title.objects.all().order_by('title')
-    return render(request, template_name='book/book_list.html', context={'objects':objects, 'active_nav':'book'})
+    if selected_genre:
+        objects = objects.filter(genre=selected_genre)
+    
+    context = {
+        'objects': objects,
+        'active_nav': 'book',
+        'genres': Title.GENRE_CHOICES,
+        'selected_genre': selected_genre
+    }
+    return render(request, template_name='book/book_list.html', context=context)
 
 @login_required
 def reserve_book(request, isbn):
@@ -91,6 +103,12 @@ def reserve_book(request, isbn):
     if book.reserve_by is None:
         book.reserve_by = request.user
         book.save()
+        # Créer l'entrée dans l'historique
+        ReservationHistory.objects.create(
+            book=book,
+            user=request.user,
+            status='ACTIVE'
+        )
         messages.success(request, f"Le livre '{book.title}' a été réservé avec succès.")
     else:
         messages.error(request, "Ce livre est déjà réservé.")
@@ -102,6 +120,16 @@ def cancel_reserve_book(request, isbn):
     if book.reserve_by == request.user:
         book.reserve_by = None
         book.save()
+        # Mettre à jour l'historique
+        reservation = ReservationHistory.objects.filter(
+            book=book,
+            user=request.user,
+            status='ACTIVE'
+        ).first()
+        if reservation:
+            reservation.status = 'CANCELLED'
+            reservation.cancelled_at = timezone.now()
+            reservation.save()
         messages.success(request, f"La réservation du livre '{book.title}' a été annulée.")
     else:
         messages.error(request, "Vous ne pouvez pas annuler cette réservation.")
@@ -110,7 +138,12 @@ def cancel_reserve_book(request, isbn):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def book_historique(request):
-    return render(request, 'book/book_historique.html')
+    reservations = ReservationHistory.objects.all()
+    context = {
+        'reservations': reservations,
+        'active_nav': 'historique'
+    }
+    return render(request, 'book/book_historique.html', context)
 
 #publisher views
 def publisher_detail(request, publisher_id):
