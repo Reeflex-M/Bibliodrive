@@ -34,6 +34,18 @@
             </div>
         </div>
 
+        <!-- Barre de recherche -->
+        <div class="max-w-7xl mx-auto mb-8">
+            <div class="relative">
+                <input type="text" id="searchInput"
+                    class="w-full px-6 py-4 bg-white rounded-xl shadow-lg pl-14 pr-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-200"
+                    placeholder="Rechercher un livre par titre, année, sujet...">
+                <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    <i class="fas fa-search text-xl"></i>
+                </div>
+            </div>
+        </div>
+
         <div class="flex">
             <!-- Sidebar - Ajout des classes pour la rendre fixe -->
             <div class="w-64 mr-8 sticky top-4 self-start h-fit">
@@ -60,52 +72,66 @@
 
             <!-- Grid -->
             <div class="flex-1">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {% for book in objects %}
                     <div
-                        class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
                         <!-- Image -->
-                        <div class="relative w-full h-48">
+                        <div class="relative w-full h-64 bg-gray-50 overflow-hidden">
                             {% if book.image %}
-                            <div class="absolute inset-0">
+                            <div
+                                class="absolute inset-0 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center p-4">
                                 <img src="{{ book.image.url }}" alt="{{ book.title }}"
-                                    class="w-full h-full object-contain">
+                                    class="max-w-full max-h-full object-contain">
                             </div>
                             {% else %}
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-100 to-teal-100 flex items-center justify-center">
-                                <i class="fas fa-book text-6xl text-teal-500"></i>
+                                class="absolute inset-0 bg-gradient-to-br from-blue-50 to-teal-50 group-hover:from-blue-100 group-hover:to-teal-100 transition-colors duration-300 flex items-center justify-center">
+                                <i
+                                    class="fas fa-book text-6xl text-teal-400 group-hover:scale-110 transition-transform duration-300"></i>
                             </div>
                             {% endif %}
                         </div>
 
                         <!-- card container -->
-                        <div class="p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.title }}</h3>
+                        <div class="p-6 space-y-4">
+                            <h3
+                                class="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                                {{ book.title }}
+                            </h3>
 
-                            <div class="space-y-3 mb-4">
-                                <!-- Note-->
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <p class="text-sm text-gray-600 flex items-start mb-2">
-                                        <span class="font-medium">Note :</span>
-                                    </p>
-                                    <p class="text-gray-700 pl-5">{{ book.notes }}</p>
+                            <div class="space-y-4">
+                                <!-- Note -->
+                                {% if book.notes %}
+                                <div class="relative bg-gradient-to-r from-blue-50 to-teal-50 p-4 rounded-xl">
+                                    <div
+                                        class="absolute -top-2 -left-2 w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center transform -rotate-12">
+                                        <i class="fas fa-quote-right text-white"></i>
+                                    </div>
+                                    <div class="pl-6">
+                                        <p class="text-sm text-gray-700 leading-relaxed italic">
+                                            {{ book.notes }}
+                                        </p>
+                                    </div>
                                 </div>
+                                {% endif %}
 
-                                <p class="text-sm text-gray-600 flex items-center">
-                                    <i class="fas fa-calendar w-5 text-teal-500"></i>
-                                    <span>Année: {{ book.year_published }}</span>
-                                </p>
-                                <p class="text-sm text-gray-600 flex items-center">
-                                    <i class="fas fa-tag w-5 text-teal-500"></i>
-                                    <span>Sujet: {{ book.subject }}</span>
-                                </p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <p class="text-sm text-gray-600 flex items-center bg-gray-50 p-2 rounded-lg">
+                                        <i class="fas fa-calendar w-5 text-teal-500"></i>
+                                        <span>{{ book.year_published }}</span>
+                                    </p>
+                                    <p class="text-sm text-gray-600 flex items-center bg-gray-50 p-2 rounded-lg">
+                                        <i class="fas fa-tag w-5 text-teal-500"></i>
+                                        <span>{{ book.subject }}</span>
+                                    </p>
+                                </div>
                             </div>
 
                             <!-- Boutons d'action -->
-                            <div class="space-y-2">
+                            <div class="space-y-3 pt-2">
                                 <a href="{% url 'book-detail' book.isbn %}"
-                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-teal-700 transition-colors duration-200">
+                                    class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-teal-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-info-circle mr-2"></i>
                                     En savoir plus
                                 </a>
@@ -113,21 +139,20 @@
                                 {% if book.reserve_by %}
                                 {% if book.reserve_by == user %}
                                 <a href="{% url 'cancel-reserve-book' book.isbn %}"
-                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-md hover:from-red-600 hover:to-red-700 transition-colors duration-200">
+                                    class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-medium rounded-xl hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-times-circle mr-2"></i>
                                     Annuler la réservation
                                 </a>
                                 {% else %}
                                 <button
-                                    class="block w-full text-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-md cursor-not-allowed"
-                                    disabled>
+                                    class="block w-full text-center px-4 py-2.5 bg-gray-300 text-white font-medium rounded-xl cursor-not-allowed">
                                     <i class="fas fa-lock mr-2"></i>
                                     Réservé par {{ book.reserve_by }}
                                 </button>
                                 {% endif %}
                                 {% else %}
                                 <a href="{% url 'reserve-book' book.isbn %}"
-                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium rounded-md hover:from-green-600 hover:to-green-700 transition-colors duration-200">
+                                    class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-xl hover:from-green-600 hover:to-green-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-bookmark mr-2"></i>
                                     Réserver
                                 </a>
@@ -141,6 +166,39 @@
             </div>
         </div>
     </div>
+
+    <!-- Script de recherche -->
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const bookCards = document.querySelectorAll('.group.bg-white'); // Sélectionne toutes les cartes de livres
+
+            bookCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const year = card.querySelector('.fa-calendar').parentElement.textContent.toLowerCase();
+                const subject = card.querySelector('.fa-tag').parentElement.textContent.toLowerCase();
+                const notes = card.querySelector('.italic')?.textContent.toLowerCase() || '';
+
+                if (title.includes(searchValue) ||
+                    year.includes(searchValue) ||
+                    subject.includes(searchValue) ||
+                    notes.includes(searchValue)) {
+                    card.style.display = '';
+                    // Animation douce pour l'apparition
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                } else {
+                    // Animation douce pour la disparition
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 200);
+                }
+            });
+        });
+    </script>
+
     {% endblock %}
 </body>
 
