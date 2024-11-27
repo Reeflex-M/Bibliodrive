@@ -26,4 +26,6 @@ urlpatterns = [
     path('book/cancel-reserve/<str:isbn>/', views.cancel_reserve_book, name='cancel-reserve-book'),
     path('historique/', views.book_historique, name='book_historique'),
     path('register/', register_view, name='register'),
+    path('reservations/add/', views.add_reservation, name='add_reservation'),
+    path('reservations/delete/<int:reservation_id>/', views.delete_reservation, name='delete_reservation'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

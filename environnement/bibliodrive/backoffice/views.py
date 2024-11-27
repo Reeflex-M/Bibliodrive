@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 #accueil views
 def accueil(request):
@@ -136,14 +137,57 @@ def cancel_reserve_book(request, isbn):
     return redirect('book-list')
 
 @login_required
-@user_passes_test(lambda u: u.is_superuser)
 def book_historique(request):
     reservations = ReservationHistory.objects.all()
     context = {
         'reservations': reservations,
         'active_nav': 'historique'
     }
+    
+    if request.user.is_superuser:
+        # Ajouter les livres disponibles et les utilisateurs au contexte
+        context.update({
+            'available_books': Title.objects.all(),
+            'users': User.objects.all()
+        })
+    
     return render(request, 'book/book_historique.html', context)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def add_reservation(request):
+    if request.method == 'POST':
+        book = get_object_or_404(Title, isbn=request.POST.get('book'))
+        user = get_object_or_404(User, id=request.POST.get('user'))
+        
+        ReservationHistory.objects.create(
+            book=book,
+            user=user,
+            status='ACTIVE'
+        )
+        book.reserve_by = user
+        book.save()
+        
+        messages.success(request, "Réservation ajoutée avec succès")
+    return redirect('book_historique')
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_reservation(request, reservation_id):
+    if request.method == 'POST':
+        reservation = get_object_or_404(ReservationHistory, id=reservation_id)
+        if reservation.status == 'ACTIVE':
+            book = reservation.book
+            book.reserve_by = None
+            book.save()
+            # Au lieu de supprimer, on met à jour le statut
+            reservation.status = 'ADMIN_CANCELLED'
+            reservation.cancelled_at = timezone.now()
+            reservation.save()
+            messages.success(request, "Réservation annulée avec succès")
+        else:
+            messages.error(request, "Cette réservation est déjà terminée")
+    return redirect('book_historique')
 
 #publisher views
 def publisher_detail(request, publisher_id):
