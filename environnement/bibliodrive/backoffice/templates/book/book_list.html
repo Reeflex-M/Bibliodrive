@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des livres</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 </head>
+
 <body class="bg-gray-100">
     {% extends 'base.html' %}
 
@@ -30,73 +34,114 @@
             </div>
         </div>
 
-        <!-- Grid-->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {% for book in objects %}
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <!-- Image -->
-                <div class="h-48 bg-gradient-to-br from-blue-100 to-teal-100 flex items-center justify-center">
-                    <i class="fas fa-book text-6xl text-teal-500"></i>
+        <div class="flex">
+            <!-- Sidebar -->
+            <div class="w-64 mr-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Genres</h2>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{% url 'book-list' %}"
+                                class="block px-4 py-2 rounded-md {% if not selected_genre %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
+                                Tous les livres
+                            </a>
+                        </li>
+                        {% for genre_code, genre_name in genres %}
+                        <li>
+                            <a href="?genre={{ genre_code }}"
+                                class="block px-4 py-2 rounded-md {% if selected_genre == genre_code %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
+                                {{ genre_name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                
-                <!-- card container -->
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.title }}</h3>
-                    
-                    <div class="space-y-3 mb-4">
-                        <!-- Note-->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600 flex items-start mb-2">
-                                <span class="font-medium">Note :</span>
-                            </p>
-                            <p class="text-gray-700 pl-5">{{ book.notes }}</p>
-                        </div>
-                        
-                        <p class="text-sm text-gray-600 flex items-center">
-                            <i class="fas fa-calendar w-5 text-teal-500"></i>
-                            <span>Année: {{ book.year_published }}</span>
-                        </p>
-                        <p class="text-sm text-gray-600 flex items-center">
-                            <i class="fas fa-tag w-5 text-teal-500"></i>
-                            <span>Sujet: {{ book.subject }}</span>
-                        </p>
-                    </div>
+            </div>
 
-                    <!-- Boutons d'action -->
-                    <div class="space-y-2">
-                        <a href="{% url 'book-detail' book.isbn %}" 
-                           class="block w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-teal-700 transition-colors duration-200">
-                            <i class="fas fa-info-circle mr-2"></i>
-                            En savoir plus
-                        </a>
-                        {% if user.is_authenticated %}
-                            {% if book.reserve_by %}
-                                {% if book.reserve_by == user %}
-                                    <a href="{% url 'cancel-reserve-book' book.isbn %}" 
-                                       class="block w-full text-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-md hover:from-red-600 hover:to-red-700 transition-colors duration-200">
-                                        <i class="fas fa-times-circle mr-2"></i>
-                                        Annuler la réservation
-                                    </a>
-                                {% else %}
-                                    <button class="block w-full text-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-md cursor-not-allowed" disabled>
-                                        <i class="fas fa-lock mr-2"></i>
-                                        Réservé par {{ book.reserve_by }}
-                                    </button>
-                                {% endif %}
+            <!-- Grid -->
+            <div class="flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {% for book in objects %}
+                    <div
+                        class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <!-- Image -->
+                        <div class="relative w-full h-48">
+                            {% if book.image %}
+                            <div class="absolute inset-0">
+                                <img src="{{ book.image.url }}" alt="{{ book.title }}"
+                                    class="w-full h-full object-contain">
+                            </div>
                             {% else %}
-                                <a href="{% url 'reserve-book' book.isbn %}" 
-                                   class="block w-full text-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium rounded-md hover:from-green-600 hover:to-green-700 transition-colors duration-200">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-blue-100 to-teal-100 flex items-center justify-center">
+                                <i class="fas fa-book text-6xl text-teal-500"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- card container -->
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ book.title }}</h3>
+
+                            <div class="space-y-3 mb-4">
+                                <!-- Note-->
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-600 flex items-start mb-2">
+                                        <span class="font-medium">Note :</span>
+                                    </p>
+                                    <p class="text-gray-700 pl-5">{{ book.notes }}</p>
+                                </div>
+
+                                <p class="text-sm text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar w-5 text-teal-500"></i>
+                                    <span>Année: {{ book.year_published }}</span>
+                                </p>
+                                <p class="text-sm text-gray-600 flex items-center">
+                                    <i class="fas fa-tag w-5 text-teal-500"></i>
+                                    <span>Sujet: {{ book.subject }}</span>
+                                </p>
+                            </div>
+
+                            <!-- Boutons d'action -->
+                            <div class="space-y-2">
+                                <a href="{% url 'book-detail' book.isbn %}"
+                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-teal-700 transition-colors duration-200">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    En savoir plus
+                                </a>
+                                {% if user.is_authenticated %}
+                                {% if book.reserve_by %}
+                                {% if book.reserve_by == user %}
+                                <a href="{% url 'cancel-reserve-book' book.isbn %}"
+                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-md hover:from-red-600 hover:to-red-700 transition-colors duration-200">
+                                    <i class="fas fa-times-circle mr-2"></i>
+                                    Annuler la réservation
+                                </a>
+                                {% else %}
+                                <button
+                                    class="block w-full text-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-md cursor-not-allowed"
+                                    disabled>
+                                    <i class="fas fa-lock mr-2"></i>
+                                    Réservé par {{ book.reserve_by }}
+                                </button>
+                                {% endif %}
+                                {% else %}
+                                <a href="{% url 'reserve-book' book.isbn %}"
+                                    class="block w-full text-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium rounded-md hover:from-green-600 hover:to-green-700 transition-colors duration-200">
                                     <i class="fas fa-bookmark mr-2"></i>
                                     Réserver
                                 </a>
-                            {% endif %}
-                        {% endif %}
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
     {% endblock %}
 </body>
+
 </html>

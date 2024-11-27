@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+  'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backoffice',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = 'accueil'
 LOGIN_REDIRECT_URL = 'accueil'
 LOGIN_URL = 'login'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'

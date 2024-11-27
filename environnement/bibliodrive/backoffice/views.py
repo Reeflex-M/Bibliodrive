@@ -4,7 +4,10 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Author, Publisher, TitleAuthor, Title
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.forms import UserCreationForm
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 #accueil views
 def accueil(request):
@@ -22,6 +25,45 @@ def accueil(request):
 #registration views
 def registration(request):
     return render(request, template_name='registration/registration.html', context={ 'active_nav':'registration'})
+
+
+@csrf_exempt  # Désactive la protection CSRF pour cette vue
+def register_view(request):
+    if request.method == 'POST':
+        if request.content_type == 'application/json':
+            data = json.loads(request.body)
+            form = UserCreationForm({
+                'username': data.get('username'),
+                'password1': data.get('password1'),
+                'password2': data.get('password2')
+            })
+        else:
+            form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            if request.content_type == 'application/json':
+                return JsonResponse({
+                    "success": True,
+                    "message": "Inscription réussie!",
+                    "username": user.username,
+                    "redirect": "/accueil/"
+                })
+            return redirect('accueil')
+        else:
+            return JsonResponse({
+                "success": False,
+                "errors": form.errors
+            }, status=400)
+    else:
+        form = UserCreationForm()
+    
+    context = {
+        'form': form,
+        'active_nav': 'register'
+    }
+    return render(request, 'registration/register.html', context)
 
 
 #author views
@@ -65,6 +107,10 @@ def cancel_reserve_book(request, isbn):
         messages.error(request, "Vous ne pouvez pas annuler cette réservation.")
     return redirect('book-list')
 
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def book_historique(request):
+    return render(request, 'book/book_historique.html')
 
 #publisher views
 def publisher_detail(request, publisher_id):
