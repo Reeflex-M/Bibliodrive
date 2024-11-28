@@ -11,6 +11,7 @@ import json
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.views.decorators.http import require_POST
 
 #accueil views
 def accueil(request):
@@ -106,27 +107,43 @@ def book_list(request):
     return render(request, template_name='book/book_list.html', context=context)
 
 @login_required
+@require_POST
 def reserve_book(request, isbn):
-    book = get_object_or_404(Title, isbn=isbn)
-    if book.reserve_by is None:
-        active_reservations = Title.get_active_reservations_count(request.user)
-        if active_reservations >= 3:
-            messages.error(request, "Vous ne pouvez pas réserver plus de 3 livres à la fois.")
-            return redirect(f'{reverse("book-list")}#book-{isbn}')
-            
-        book.reserve_by = request.user
-        book.save()
-        ReservationHistory.objects.create(
-            book=book,
-            user=request.user,
-            status='ACTIVE'
-        )
-        messages.success(request, f"Le livre '{book.title}' a été réservé avec succès.")
-    else:
-        messages.error(request, "Ce livre est déjà réservé.")
-    return redirect(f'{reverse("book-list")}#book-{isbn}')
+    try:
+        book = get_object_or_404(Title, isbn=isbn)
+        if book.reserve_by is None:
+            active_reservations = Title.get_active_reservations_count(request.user)
+            if active_reservations >= 3:
+                return JsonResponse({
+                    'success': False,
+                    'message': "Vous ne pouvez pas réserver plus de 3 livres à la fois."
+                })
+                
+            book.reserve_by = request.user
+            book.save()
+            ReservationHistory.objects.create(
+                book=book,
+                user=request.user,
+                status='ACTIVE'
+            )
+            return JsonResponse({
+                'success': True,
+                'message': f"Le livre '{book.title}' a été réservé avec succès.",
+                'newStatus': 'reserved',
+                'reservedBy': request.user.username
+            })
+        return JsonResponse({
+            'success': False,
+            'message': "Ce livre est déjà réservé."
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'message': str(e)
+        }, status=500)
 
 @login_required
+@require_POST
 def cancel_reserve_book(request, isbn):
     book = get_object_or_404(Title, isbn=isbn)
     if book.reserve_by == request.user:
@@ -141,10 +158,15 @@ def cancel_reserve_book(request, isbn):
             reservation.status = 'CANCELLED'
             reservation.cancelled_at = timezone.now()
             reservation.save()
-        messages.success(request, f"La réservation du livre '{book.title}' a été annulée.")
-    else:
-        messages.error(request, "Vous ne pouvez pas annuler cette réservation.")
-    return redirect(f'{reverse("book-list")}#book-{isbn}')
+        return JsonResponse({
+            'success': True,
+            'message': f"La réservation du livre '{book.title}' a été annulée.",
+            'newStatus': 'available'
+        })
+    return JsonResponse({
+        'success': False,
+        'message': "Vous ne pouvez pas annuler cette réservation."
+    })
 
 @login_required
 def book_historique(request):

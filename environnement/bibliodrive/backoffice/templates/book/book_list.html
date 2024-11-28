@@ -138,7 +138,7 @@
                                 {% if user.is_authenticated %}
                                 {% if book.reserve_by %}
                                 {% if book.reserve_by == user %}
-                                <a href="{% url 'cancel-reserve-book' book.isbn %}"
+                                <a href="#" onclick="cancelReservation('{{ book.isbn }}'); return false;"
                                     class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-medium rounded-xl hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-times-circle mr-2"></i>
                                     Annuler la réservation
@@ -158,7 +158,7 @@
                                     Non réservable (limite atteinte)
                                 </button>
                                 {% else %}
-                                <a href="{% url 'reserve-book' book.isbn %}"
+                                <a href="#" onclick="makeReservation('{{ book.isbn }}'); return false;"
                                     class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-xl hover:from-green-600 hover:to-green-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-bookmark mr-2"></i>
                                     Réserver
@@ -205,6 +205,117 @@
                 }
             });
         });
+    </script>
+
+    <!-- Ajouter ce script avant la fin du body -->
+    <script>
+        function getCsrfToken() {
+            // Modifié pour utiliser la meta tag qu'on a ajouté
+            return document.querySelector('meta[name="csrf-token"]').content;
+        }
+
+        function updateBookCard(bookIsbn, data) {
+            const card = document.querySelector(`#book-${bookIsbn}`);
+            const actionDiv = card.querySelector('.space-y-3');
+
+            // Conserver le lien "En savoir plus"
+            const detailsButton = `
+                <a href="/book/${bookIsbn}" 
+                    class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-teal-700 transform hover:-translate-y-0.5 transition-all duration-200">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    En savoir plus
+                </a>`;
+
+            if (data.newStatus === 'reserved') {
+                actionDiv.innerHTML = `
+                    ${detailsButton}
+                    <a href="#" onclick="cancelReservation('${bookIsbn}'); return false;"
+                        class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-medium rounded-xl hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200">
+                        <i class="fas fa-times-circle mr-2"></i>
+                        Annuler la réservation
+                    </a>`;
+            } else if (data.newStatus === 'available') {
+                actionDiv.innerHTML = `
+                    ${detailsButton}
+                    <a href="#" onclick="makeReservation('${bookIsbn}'); return false;"
+                        class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-xl hover:from-green-600 hover:to-green-700 transform hover:-translate-y-0.5 transition-all duration-200">
+                        <i class="fas fa-bookmark mr-2"></i>
+                        Réserver
+                    </a>`;
+            }
+        }
+
+        function showMessage(message, isError = false) {
+            // Créer ou utiliser un élément pour afficher les messages
+            const messageDiv = document.getElementById('message-div') || (() => {
+                const div = document.createElement('div');
+                div.id = 'message-div';
+                div.className = 'fixed top-4 right-4 z-50 transition-all duration-500 transform';
+                document.body.appendChild(div);
+                return div;
+            })();
+
+            const alert = document.createElement('div');
+            alert.className = `p-4 rounded-lg shadow-lg mb-4 transition-all duration-500 transform ${isError ? 'bg-red-500' : 'bg-green-500'
+                } text-white`;
+            alert.textContent = message;
+
+            messageDiv.appendChild(alert);
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }, 3000);
+        }
+
+        function makeReservation(isbn) {
+            // Mise à jour de l'URL
+            fetch(`/api/books/${isbn}/reserve/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrfToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({}) // Ajouter un corps vide
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateBookCard(isbn, data);
+                        showMessage(data.message);
+                    } else {
+                        showMessage(data.message, true);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('Une erreur est survenue', true);
+                });
+        }
+
+        function cancelReservation(isbn) {
+            // Mise à jour de l'URL
+            fetch(`/api/books/${isbn}/cancel/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrfToken(),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({}) // Ajouter un corps vide
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateBookCard(isbn, data);
+                        showMessage(data.message);
+                    } else {
+                        showMessage(data.message, true);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('Une erreur est survenue', true);
+                });
+        }
     </script>
 
     {% endblock %}
