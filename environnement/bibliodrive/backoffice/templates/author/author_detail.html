@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détail de l'auteur</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
     {% extends 'base.html' %}
 
@@ -23,7 +25,7 @@
                 <p class="text-indigo-100 mt-2">Fiche détaillée de l'auteur</p>
             </div>
 
-            <!-- Corps -->
+
             <div class="bg-white shadow-xl rounded-b-xl border border-gray-100 p-8">
                 <div class="space-y-6">
                     <!-- Nom libelle -->
@@ -54,9 +56,10 @@
 
                     <!-- Bouton -->
                     <div class="flex justify-center mt-8">
-                        <a href="{% url 'author-list' %}" 
-                           class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
-                            <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                        <a href="{% url 'author-list' %}"
+                            class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                            <i
+                                class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
                             Retour à la liste
                         </a>
                     </div>
@@ -66,4 +69,5 @@
     </div>
     {% endblock %}
 </body>
+
 </html>

@@ -6,7 +6,7 @@
     <h1 class="text-2xl font-bold mb-6 text-gray-800">Historique des Réservations</h1>
 
     {% if user.is_superuser %}
-    <!-- Formulaire d'ajout de réservation -->
+    <!-- Form reservation-->
     <div class="mb-8 p-4 bg-gray-50 rounded-lg">
       <h2 class="text-lg font-semibold mb-4">Ajouter une réservation</h2>
       <form action="{% url 'add_reservation' %}" method="POST" class="flex gap-4">

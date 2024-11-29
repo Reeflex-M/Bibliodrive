@@ -47,7 +47,7 @@
         </div>
 
         <div class="flex">
-            <!-- Sidebar - Ajout des classes pour la rendre fixe -->
+            <!-- sidebar -->
             <div class="w-64 mr-8 sticky top-4 self-start h-fit">
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Genres</h2>
@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <!-- Script de recherche -->
+    <!-- Script searchbar -->
     <script>
         document.getElementById('searchInput').addEventListener('keyup', function () {
             const searchValue = this.value.toLowerCase();
@@ -192,11 +192,9 @@
                     subject.includes(searchValue) ||
                     notes.includes(searchValue)) {
                     card.style.display = '';
-                    // Animation douce pour l'apparition
                     card.style.opacity = '1';
                     card.style.transform = 'scale(1)';
                 } else {
-                    // Animation douce pour la disparition
                     card.style.opacity = '0';
                     card.style.transform = 'scale(0.95)';
                     setTimeout(() => {
@@ -207,10 +205,9 @@
         });
     </script>
 
-    <!-- Ajouter ce script avant la fin du body -->
+
     <script>
         function getCsrfToken() {
-            // Modifié pour utiliser la meta tag qu'on a ajouté
             return document.querySelector('meta[name="csrf-token"]').content;
         }
 
@@ -218,7 +215,6 @@
             const card = document.querySelector(`#book-${bookIsbn}`);
             const actionDiv = card.querySelector('.space-y-3');
 
-            // Conserver le lien "En savoir plus"
             const detailsButton = `
                 <a href="/book/${bookIsbn}" 
                     class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-teal-700 transform hover:-translate-y-0.5 transition-all duration-200">
@@ -246,7 +242,6 @@
         }
 
         function showMessage(message, isError = false) {
-            // Créer ou utiliser un élément pour afficher les messages
             const messageDiv = document.getElementById('message-div') || (() => {
                 const div = document.createElement('div');
                 div.id = 'message-div';
@@ -300,7 +295,7 @@
                     'X-CSRFToken': getCsrfToken(),
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({}) // Ajouter un corps vide
+                body: JSON.stringify({})
             })
                 .then(response => response.json())
                 .then(data => {

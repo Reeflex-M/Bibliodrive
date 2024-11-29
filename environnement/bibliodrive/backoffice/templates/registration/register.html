@@ -6,7 +6,6 @@
 {% block content %}
 <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-[480px] bg-white rounded-xl shadow-lg p-8 h-[480px] space-y-8">
-        <!-- Logo/Titre -->
         <div class="text-center">
             <i class="fas fa-user-plus text-indigo-600 text-4xl mb-4"></i>
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -17,7 +16,6 @@
             </p>
         </div>
 
-        <!-- Formulaire -->
         <form method="post" class="mt-8 space-y-6">
             {% csrf_token %}
             <div class="rounded-md shadow-sm space-y-4">
@@ -28,7 +26,9 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
-                        {{ form.username|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Identifiant" }}
+                        {{ form.username|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border
+                        border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none
+                        focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Identifiant" }}
                     </div>
                 </div>
 
@@ -39,7 +39,9 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-400"></i>
                         </div>
-                        {{ form.password1|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Mot de passe" }}
+                        {{ form.password1|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border
+                        border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none
+                        focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Mot de passe" }}
                     </div>
                 </div>
 
@@ -50,13 +52,17 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-400"></i>
                         </div>
-                        {{ form.password2|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Confirmer le mot de passe" }}
+                        {{ form.password2|add_class:"appearance-none relative block w-full px-3 py-3 pl-10 border
+                        border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none
+                        focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"|attr:"placeholder:Confirmer le mot de
+                        passe" }}
                     </div>
                 </div>
 
                 <!-- Bouton Submit -->
                 <div>
-                    <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                    <button type="submit"
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i class="fas fa-user-plus text-indigo-200 group-hover:text-indigo-100"></i>
                         </span>
@@ -79,7 +85,8 @@
 
         <!-- Lien vers Login -->
         <div class="text-sm text-center">
-            <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200">
+            <a href="{% url 'login' %}"
+                class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200">
                 Déjà inscrit ? Connectez-vous
             </a>
         </div>
