@@ -17,7 +17,7 @@
             <h1 class="text-3xl font-bold mb-4 text-indigo-600">Détail de l'éditeur: {{ publisher.name }}</h1>
             <div class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Nom de l'entreprise -->
+                    <!-- nom entreprise -->
                     <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-building text-indigo-500"></i>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <!-- Adresse -->
+                    <!-- adresse -->
                     <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-map-marker-alt text-indigo-500"></i>
@@ -109,11 +109,12 @@
                 </div>
             </div>
 
-            <div class="flex justify-center mt-6">
-                <a href="{% url 'publisher-list' %}" 
-                   class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md transition-colors duration-200">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    Retour à la liste
+            <div class="flex justify-center mt-8">
+                <a href="{% url 'publisher-list' %}"
+                    class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                    <i
+                        class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                    Retour à la liste d'éditeurs
                 </a>
             </div>
         </div>

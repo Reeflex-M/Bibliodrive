@@ -1,0 +1,223 @@
+[
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070378119",
+        "fields": {
+            "title": "Les Misérables",
+            "year_published": 1862,
+            "isbn": "9782070378119",
+            "pubid": 1,
+            "reserve_by": null,
+            "description": "Classique de la littérature française",
+            "notes": "Édition intégrale",
+            "subject": "Roman historique",
+            "comments": "Considéré comme l'un des plus grands romans du XIXe siècle.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782266244144",
+        "fields": {
+            "title": "1984",
+            "year_published": 1949,
+            "isbn": "9782266244144",
+            "pubid": 2,
+            "reserve_by": null,
+            "description": "Roman d'anticipation dystopique",
+            "notes": "Chef-d'œuvre de George Orwell",
+            "subject": "Science-fiction",
+            "comments": "Une vision glaçante d'un futur totalitaire",
+            "image": null,
+            "genre": "SCIENCE"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070368227",
+        "fields": {
+            "title": "Le Petit Prince",
+            "year_published": 1943,
+            "isbn": "9782070368227",
+            "pubid": 4,
+            "reserve_by": null,
+            "description": "Conte philosophique",
+            "notes": "Illustré par l'auteur",
+            "subject": "Littérature jeunesse",
+            "comments": "Un des livres les plus traduits au monde.",
+            "image": null,
+            "genre": "AUTRE"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782266244151",
+        "fields": {
+            "title": "Les Trois Mousquetaires",
+            "year_published": 1844,
+            "isbn": "9782266244151",
+            "pubid": 5,
+            "reserve_by": null,
+            "description": "Roman d'aventures historiques",
+            "notes": "Édition intégrale",
+            "subject": "Roman d'époque",
+            "comments": "L'une des œuvres les plus connues de Dumas.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070401078",
+        "fields": {
+            "title": "Le Nom de la rose",
+            "year_published": 1980,
+            "isbn": "9782070401078",
+            "pubid": 1,
+            "reserve_by": null,
+            "description": "Roman historique et mystère",
+            "notes": "Adapté au cinéma",
+            "subject": "Roman médiéval",
+            "comments": "Premier roman de l'auteur, grand succès.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070413026",
+        "fields": {
+            "title": "Le Pendule de Foucault",
+            "year_published": 1988,
+            "isbn": "9782070413026",
+            "pubid": 1,
+            "reserve_by": null,
+            "description": "Roman ésotérique",
+            "notes": "Deuxième roman de l'auteur",
+            "subject": "Conspiration",
+            "comments": "Exploration des théories du complot.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070401085",
+        "fields": {
+            "title": "L'Étranger",
+            "year_published": 1942,
+            "isbn": "9782070401085",
+            "pubid": 1,
+            "reserve_by": null,
+            "description": "Roman absurde",
+            "notes": "Premier roman de l'auteur",
+            "subject": "Philosophie existentielle",
+            "comments": "Œuvre majeure du XXe siècle.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782070401092",
+        "fields": {
+            "title": "La Peste",
+            "year_published": 1947,
+            "isbn": "9782070401092",
+            "pubid": 1,
+            "reserve_by": null,
+            "description": "Roman allégorique",
+            "notes": "Prix Nobel de littérature",
+            "subject": "Épidémie et résistance",
+            "comments": "Réflexion sur la condition humaine face à l'adversité.",
+            "image": null,
+            "genre": "ROMAN"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782756050001",
+        "fields": {
+            "title": "Dragon Ball Z - Tome 1 : La légende de Saiyan",
+            "year_published": 1989,
+            "isbn": "9782756050001",
+            "pubid": 15,
+            "reserve_by": null,
+            "description": "Début de l'adaptation manga du classique de l'anime",
+            "notes": "Série culte du shonen",
+            "subject": "Action/Aventure",
+            "comments": "Commence l'histoire de Goku et ses amis contre Raditz.",
+            "image": null,
+            "genre": "FANTASY"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782756050018",
+        "fields": {
+            "title": "One Piece - Tome 1 : À l'aube d'une grande aventure",
+            "year_published": 1997,
+            "isbn": "9782756050018",
+            "pubid": 16,
+            "reserve_by": null,
+            "description": "Début de l'aventure de Monkey D. Luffy",
+            "notes": "Série longue et populaire",
+            "subject": "Action/Aventure",
+            "comments": "Introduction aux personnages principaux et au monde de One Piece.",
+            "image": null,
+            "genre": "FANTASY"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782756050025",
+        "fields": {
+            "title": "Naruto - Tome 1 : ...!!",
+            "year_published": 1999,
+            "isbn": "9782756050025",
+            "pubid": 17,
+            "reserve_by": null,
+            "description": "Début de l'histoire du jeune ninja Naruto Uzumaki",
+            "notes": "Série très populaire dans le genre shonen",
+            "subject": "Action/Aventure",
+            "comments": "Introduction au village caché des Feuilles et à ses ninjas.",
+            "image": null,
+            "genre": "FANTASY"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782756050032",
+        "fields": {
+            "title": "Death Note - Tome 1 : Bataille d'esprits",
+            "year_published": 2003,
+            "isbn": "9782756050032",
+            "pubid": 18,
+            "reserve_by": null,
+            "description": "Thriller psychologique sur la justice et la moralité",
+            "notes": "Série courte mais intense",
+            "subject": "Psychologie/Mystère",
+            "comments": "Rencontre entre Light Yagami et Ryuk, le shinigami.",
+            "image": null,
+            "genre": "POLICIER"
+        }
+    },
+    {
+        "model": "backoffice.Title",
+        "pk": "9782756050049",
+        "fields": {
+            "title": "Attack on Titan - Tome 1 : À l'aube de l'humanité",
+            "year_published": 2009,
+            "isbn": "9782756050049",
+            "pubid": 19,
+            "reserve_by": null,
+            "description": "Dark fantasy dans un monde envahi par des géants",
+            "notes": "Série récente à grand succès",
+            "subject": "Action/Horreur",
+            "comments": "Introduction au monde post-apocalyptique et aux Titans.",
+            "image": null,
+            "genre": "FANTASY"
+        }
+    }
+]

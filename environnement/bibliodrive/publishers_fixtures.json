@@ -1,0 +1,272 @@
+[
+    {
+        "model": "backoffice.Publisher",
+        "pk": 1,
+        "fields": {
+            "name": "Éditions Gallimard",
+            "company_name": "Groupe Madrigall",
+            "address": "5 rue Sébastien Bottin",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75007",
+            "telephone": "+33 1 40 58 81 00",
+            "fax": "+33 1 40 58 81 01",
+            "comments": "Un des principaux groupes d'édition français."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 2,
+        "fields": {
+            "name": "Éditions Grasset",
+            "company_name": "Hachette Livre",
+            "address": "61 rue Mazarine",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 43 26 02 00",
+            "fax": "+33 1 43 26 02 01",
+            "comments": "Maison d'édition généraliste de renom."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 3,
+        "fields": {
+            "name": "Éditions Flammarion",
+            "company_name": "Groupe Madrigall",
+            "address": "26 rue Racine",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 45 44 65 00",
+            "fax": "+33 1 45 44 65 01",
+            "comments": "Ancienne maison d'édition familiale."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 4,
+        "fields": {
+            "name": "Éditions Albin Michel",
+            "company_name": "Indépendant",
+            "address": "22 rue Huyghens",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75014",
+            "telephone": "+33 1 42 79 49 90",
+            "fax": "+33 1 42 79 49 91",
+            "comments": "Une des dernières grandes maisons indépendantes."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 5,
+        "fields": {
+            "name": "Éditions Robert Laffont",
+            "company_name": "Penguin Random House",
+            "address": "149 rue de Grenelle",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75007",
+            "telephone": "+33 1 40 51 52 00",
+            "fax": "+33 1 40 51 52 01",
+            "comments": "Spécialisé dans les livres pratiques et les essais."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 6,
+        "fields": {
+            "name": "Éditions Fayard",
+            "company_name": "Groupe Hachette",
+            "address": "85 boulevard Raspail",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 40 46 70 00",
+            "fax": "+33 1 40 46 70 01",
+            "comments": "Ancienne maison d'édition familiale."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 7,
+        "fields": {
+            "name": "Éditions Plon",
+            "company_name": "Madrigall",
+            "address": "37 quai de Montebello",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75005",
+            "telephone": "+33 1 53 10 32 00",
+            "fax": "+33 1 53 10 32 01",
+            "comments": "Spécialisé dans les essais et les documents."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 8,
+        "fields": {
+            "name": "Éditions du Seuil",
+            "company_name": "La Martinière Groupe",
+            "address": "27 rue Jacob",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 40 46 09 00",
+            "fax": "+33 1 40 46 09 01",
+            "comments": "Maison d'édition généraliste de gauche."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 9,
+        "fields": {
+            "name": "Éditions Minuit",
+            "company_name": "Indépendant",
+            "address": "7 rue Bernard Palissy",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 45 48 35 60",
+            "fax": "+33 1 45 48 35 61",
+            "comments": "Spécialisé dans la littérature contemporaine."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 10,
+        "fields": {
+            "name": "Éditions Stock",
+            "company_name": "Penguin Random House",
+            "address": "6 rue Casimir Delavigne",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 40 59 80 00",
+            "fax": "+33 1 40 59 80 01",
+            "comments": "Ancienne maison d'édition familiale."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 11,
+        "fields": {
+            "name": "Éditions Denoël",
+            "company_name": "Groupe d'Editions Littéraires Indépendantes",
+            "address": "103 rue de Grenelle",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75007",
+            "telephone": "+33 1 40 62 72 00",
+            "fax": "+33 1 40 62 72 01",
+            "comments": "Spécialisé dans la science-fiction et le fantastique."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 12,
+        "fields": {
+            "name": "Éditions Julliard",
+            "company_name": "Groupe Flammarion",
+            "address": "26 rue Racine",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 45 44 65 00",
+            "fax": "+33 1 45 44 65 01",
+            "comments": "Spécialisé dans la littérature contemporaine."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 13,
+        "fields": {
+            "name": "Mercure de France",
+            "company_name": "Groupe Gallimard",
+            "address": "26 rue de Condé",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 40 46 78 00",
+            "fax": "+33 1 40 46 78 01",
+            "comments": "Ancienne revue littéraire devenue maison d'édition."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 14,
+        "fields": {
+            "name": "Éditions Laffont",
+            "company_name": "Penguin Random House",
+            "address": "149 rue de Grenelle",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75007",
+            "telephone": "+33 1 40 51 52 00",
+            "fax": "+33 1 40 51 52 01",
+            "comments": "Spécialisé dans les livres pratiques et les essais."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 15,
+        "fields": {
+            "name": "Hachette Livre",
+            "company_name": "Lagardère Publishing",
+            "address": "58 rue Jean-Jacques Rousseau",
+            "city": "Vanves",
+            "state": "",
+            "zip_code": "92130",
+            "telephone": "+33 1 58 76 70 00",
+            "fax": "+33 1 58 76 70 01",
+            "comments": "Premier groupe d'édition français."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 16,
+        "fields": {
+            "name": "Pocket",
+            "company_name": "Groupe Hachette",
+            "address": "58 rue Jean-Jacques Rousseau",
+            "city": "Vanves",
+            "state": "",
+            "zip_code": "92130",
+            "telephone": "+33 1 58 76 70 00",
+            "fax": "+33 1 58 76 70 01",
+            "comments": "Leader du livre de poche en France."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 17,
+        "fields": {
+            "name": "Presses Universitaires de France",
+            "company_name": "Indépendant",
+            "address": "108 boulevard Saint-Germain",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 49 54 34 00",
+            "fax": "+33 1 49 54 34 01",
+            "comments": "Spécialisé dans les ouvrages universitaires."
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 18,
+        "fields": {
+            "name": "Éditions du Seuil",
+            "company_name": "La Martinière Groupe",
+            "address": "27 rue Jacob",
+            "city": "Paris",
+            "state": "",
+            "zip_code": "75006",
+            "telephone": "+33 1 40 46 09 00",
+            "fax": "+33 1 40 46 09 01",
+            "comments": "Maison d'édition généraliste de gauche."
+        }
+    }
+]

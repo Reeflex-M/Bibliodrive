@@ -1,0 +1,242 @@
+[
+    {
+        "model": "backoffice.Author",
+        "pk": 1,
+        "fields": {
+            "author": "Victor Hugo",
+            "year_born": 1802
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 2,
+        "fields": {
+            "author": "Gustave Flaubert",
+            "year_born": 1821
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 3,
+        "fields": {
+            "author": "Émile Zola",
+            "year_born": 1840
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 4,
+        "fields": {
+            "author": "Marcel Proust",
+            "year_born": 1871
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 5,
+        "fields": {
+            "author": "Albert Camus",
+            "year_born": 1913
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 6,
+        "fields": {
+            "author": "Charles Baudelaire",
+            "year_born": 1821
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 7,
+        "fields": {
+            "author": "Arthur Rimbaud",
+            "year_born": 1854
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 8,
+        "fields": {
+            "author": "Paul Verlaine",
+            "year_born": 1844
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 9,
+        "fields": {
+            "author": "Guillaume Apollinaire",
+            "year_born": 1880
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 10,
+        "fields": {
+            "author": "René Descartes",
+            "year_born": 1596
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 11,
+        "fields": {
+            "author": "Voltaire",
+            "year_born": 1694
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 12,
+        "fields": {
+            "author": "Jean-Jacques Rousseau",
+            "year_born": 1712
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 13,
+        "fields": {
+            "author": "Simone de Beauvoir",
+            "year_born": 1908
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 14,
+        "fields": {
+            "author": "Jean-Paul Sartre",
+            "year_born": 1905
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 15,
+        "fields": {
+            "author": "Molière",
+            "year_born": 1622
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 16,
+        "fields": {
+            "author": "Honoré de Balzac",
+            "year_born": 1799
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 17,
+        "fields": {
+            "author": "Stendhal",
+            "year_born": 1783
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 18,
+        "fields": {
+            "author": "Alexandre Dumas",
+            "year_born": 1802
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 19,
+        "fields": {
+            "author": "Jules Verne",
+            "year_born": 1828
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 20,
+        "fields": {
+            "author": "Eiichiro Oda",
+            "year_born": 1975
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 21,
+        "fields": {
+            "author": "Masashi Kishimoto",
+            "year_born": 1974
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 22,
+        "fields": {
+            "author": "Takehiko Inoue",
+            "year_born": 1967
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 23,
+        "fields": {
+            "author": "Kentaro Miura",
+            "year_born": 1966
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 24,
+        "fields": {
+            "author": "Akira Toriyama",
+            "year_born": 1955
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 25,
+        "fields": {
+            "author": "Leiji Matsumoto",
+            "year_born": 1938
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 26,
+        "fields": {
+            "author": "Osamu Tezuka",
+            "year_born": 1928
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 27,
+        "fields": {
+            "author": "Rumiko Takahashi",
+            "year_born": 1957
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 28,
+        "fields": {
+            "author": "Hajime Isayama",
+            "year_born": 1986
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 29,
+        "fields": {
+            "author": "Kazuki Takahashi",
+            "year_born": 1961
+        }
+    },
+    {
+        "model": "backoffice.Author",
+        "pk": 30,
+        "fields": {
+            "author": "Tsugumi Ohba",
+            "year_born": 1979
+        }
+    }
+]

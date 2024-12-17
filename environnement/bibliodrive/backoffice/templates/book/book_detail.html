@@ -14,132 +14,133 @@
         {% block title %}Détail du livre{% endblock %}
 
         {% block content %}
-            <div class="container mx-auto px-4 py-12">
-                <div class="max-w-4xl mx-auto">
-                    <!-- En-tête-->
-                    <div class="bg-gradient-to-r from-blue-600 to-teal-600 rounded-t-xl p-8 text-white">
-                        <h1 class="text-3xl font-bold">
-                            <i class="fas fa-book-open text-4xl mb-4 block opacity-90"></i>
+            <div class="container mx-auto px-4 py-8">
+                <div class="max-w-3xl mx-auto">
+                    <!-- head-->
+                    <div class="bg-gradient-to-r from-blue-600 to-teal-600 rounded-t-lg p-6 text-white">
+                        <h1 class="text-2xl font-bold">
+                            <i class="fas fa-book-open text-3xl mb-2 block opacity-90"></i>
                             {{ book.title }}
                         </h1>
-                        <p class="text-blue-100 mt-2">Détails du livre</p>
+                        <p class="text-blue-100 text-sm mt-1">Détails du livre</p>
                     </div>
 
-                    <!-- Corps -->
-                    <div class="bg-white shadow-xl rounded-b-xl border border-gray-100 p-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Titre -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-book text-blue-600 text-xl"></i>
+                    
+                    <div class="bg-white shadow-lg rounded-b-lg border border-gray-100 p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- titre -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-book text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Titre</p>
-                                        <p class="text-lg font-medium">{{ book.title }}</p>
+                                        <p class="text-xs text-gray-500">Titre</p>
+                                        <p class="text-base font-medium">{{ book.title }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ISBN -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-barcode text-blue-600 text-xl"></i>
+                            <!-- isbn -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-barcode text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">ISBN</p>
-                                        <p class="text-lg font-medium">{{ book.isbn }}</p>
+                                        <p class="text-xs text-gray-500">ISBN</p>
+                                        <p class="text-base font-medium">{{ book.isbn }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Année de publication -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-calendar text-blue-600 text-xl"></i>
+                            <!-- annee publication -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-calendar text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Année de publication</p>
-                                        <p class="text-lg font-medium">{{ book.year_published }}</p>
+                                        <p class="text-xs text-gray-500">Année de publication</p>
+                                        <p class="text-base font-medium">{{ book.year_published }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Éditeur -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-building text-blue-600 text-xl"></i>
+                            <!-- editeur -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-building text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Éditeur</p>
-                                        <a href="{% url 'publisher-detail' publisher_id=book.pubid.pk %}" class="text-lg font-medium text-blue-600 hover:text-blue-800">{{ book.pubid.name }}</a>
+                                        <p class="text-xs text-gray-500">Éditeur</p>
+                                        <a href="{% url 'publisher-detail' publisher_id=book.pubid.pk %}" class="text-base font-medium text-blue-600 hover:text-blue-800">{{ book.pubid.name }}</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Description -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200 md:col-span-2">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-align-left text-blue-600 text-xl"></i>
+                            <!-- description -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200 md:col-span-2">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-align-left text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Description</p>
-                                        <p class="text-lg font-medium">{{ book.description }}</p>
+                                        <p class="text-xs text-gray-500">Description</p>
+                                        <p class="text-base font-medium">{{ book.description }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Sujet -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-tag text-blue-600 text-xl"></i>
+                            <!-- sujet -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-tag text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Sujet</p>
-                                        <p class="text-lg font-medium">{{ book.subject }}</p>
+                                        <p class="text-xs text-gray-500">Sujet</p>
+                                        <p class="text-base font-medium">{{ book.subject }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Notes -->
-                            <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-sticky-note text-blue-600 text-xl"></i>
+                            <!--notes -->
+                            <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-sticky-note text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Notes</p>
-                                        <p class="text-lg font-medium">{{ book.notes }}</p>
+                                        <p class="text-xs text-gray-500">Notes</p>
+                                        <p class="text-base font-medium">{{ book.notes }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Commentaires -->
-                            <div class="mt-6 bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 p-3 rounded-full">
-                                        <i class="fas fa-comments text-blue-600 text-xl"></i>
+                            <!-- commentaires -->
+                            <div class="mt-4 bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="bg-blue-100 p-2 rounded-full">
+                                        <i class="fas fa-comments text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Commentaires</p>
-                                        <p class="text-lg font-medium">{{ book.comments }}</p>
+                                        <p class="text-xs text-gray-500">Commentaires</p>
+                                        <p class="text-base font-medium">{{ book.comments }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bouton de retour -->
+                    <!-- btn -->
                     <div class="flex justify-center mt-8">
-                        <a href="{% url 'book-list' %}" 
-                           class="group flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-teal-700 transition-all duration-200 shadow-md hover:shadow-lg">
-                            <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
-                            Retour à la liste
+                        <a href="{% url 'book-list' %}"
+                            class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                            <i
+                                class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
+                            Retour à la liste de livres
                         </a>
                     </div>
                 </div>

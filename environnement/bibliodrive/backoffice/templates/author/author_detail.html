@@ -16,7 +16,7 @@
     {% block content %}
     <div class="container mx-auto px-4 py-12">
         <div class="max-w-2xl mx-auto">
-            <!-- En-tête -->
+            <!-- header -->
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-xl p-8 text-white">
                 <h1 class="text-3xl font-bold">
                     <i class="fas fa-user-circle text-4xl mb-4 block opacity-90"></i>
@@ -28,7 +28,7 @@
 
             <div class="bg-white shadow-xl rounded-b-xl border border-gray-100 p-8">
                 <div class="space-y-6">
-                    <!-- Nom libelle -->
+                    <!-- nom -->
                     <div class="bg-gray-50 rounded-lg p-6 transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center space-x-4">
                             <div class="bg-indigo-100 p-3 rounded-full">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <!-- Annee libelle -->
+                    <!-- annee -->
                     <div class="bg-gray-50 rounded-lg p-6 transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center space-x-4">
                             <div class="bg-indigo-100 p-3 rounded-full">
@@ -54,13 +54,13 @@
                         </div>
                     </div>
 
-                    <!-- Bouton -->
+                    <!-- btn -->
                     <div class="flex justify-center mt-8">
                         <a href="{% url 'author-list' %}"
                             class="group flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
                             <i
                                 class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform duration-200"></i>
-                            Retour à la liste
+                            Retour à la liste des auteurs
                         </a>
                     </div>
                 </div>

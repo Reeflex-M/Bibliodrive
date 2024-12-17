@@ -1,0 +1,137 @@
+[
+    {
+        "model": "backoffice.Publisher",
+        "pk": 1,
+        "fields": {
+            "name": "Gallimard",
+            "company_name": "Éditions Gallimard",
+            "address": "5 rue Gaston-Gallimard",
+            "city": "Paris",
+            "state": "IDF",
+            "zip_code": "75007",
+            "telephone": "0145497300",
+            "fax": "0145497301",
+            "comments": "Maison d'édition française"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 2,
+        "fields": {
+            "name": "Pocket",
+            "company_name": "Éditions Pocket",
+            "address": "12 avenue d'Italie",
+            "city": "Paris",
+            "state": "IDF",
+            "zip_code": "75013",
+            "telephone": "0144160000",
+            "fax": "0144160001",
+            "comments": "Collection de poche"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 4,
+        "fields": {
+            "name": "Hachette",
+            "company_name": "Hachette Livre",
+            "address": "58 rue Jean Bleuzen",
+            "city": "Vanves",
+            "state": "IDF",
+            "zip_code": "92170",
+            "telephone": "0143134000",
+            "fax": "0143134001",
+            "comments": "Grand groupe d'édition"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 5,
+        "fields": {
+            "name": "Le Livre de Poche",
+            "company_name": "Le Livre de Poche",
+            "address": "21 rue du Montparnasse",
+            "city": "Paris",
+            "state": "IDF",
+            "zip_code": "75006",
+            "telephone": "0149544200",
+            "fax": "0149544201",
+            "comments": "Collection de poche"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 15,
+        "fields": {
+            "name": "Glénat",
+            "company_name": "Glénat Éditions",
+            "address": "37 rue d'Aboukir",
+            "city": "Paris",
+            "state": "IDF",
+            "zip_code": "75002",
+            "telephone": "0141000000",
+            "fax": "0141000001",
+            "comments": "Éditeur de manga et BD"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 16,
+        "fields": {
+            "name": "Kana",
+            "company_name": "Éditions Kana",
+            "address": "58 rue Jean Bleuzen",
+            "city": "Vanves",
+            "state": "IDF",
+            "zip_code": "92170",
+            "telephone": "0141001000",
+            "fax": "0141001001",
+            "comments": "Éditeur de manga"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 17,
+        "fields": {
+            "name": "Pika",
+            "company_name": "Pika Édition",
+            "address": "58 rue Jean Bleuzen",
+            "city": "Vanves",
+            "state": "IDF",
+            "zip_code": "92170",
+            "telephone": "0141002000",
+            "fax": "0141002001",
+            "comments": "Éditeur de manga"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 18,
+        "fields": {
+            "name": "Ki-oon",
+            "company_name": "Ki-oon",
+            "address": "15 rue Léon Jouhaux",
+            "city": "Paris",
+            "state": "IDF",
+            "zip_code": "75010",
+            "telephone": "0141003000",
+            "fax": "0141003001",
+            "comments": "Éditeur de manga"
+        }
+    },
+    {
+        "model": "backoffice.Publisher",
+        "pk": 19,
+        "fields": {
+            "name": "Pika",
+            "company_name": "Pika Édition",
+            "address": "58 rue Jean Bleuzen",
+            "city": "Vanves",
+            "state": "IDF",
+            "zip_code": "92170",
+            "telephone": "0141004000",
+            "fax": "0141004001",
+            "comments": "Éditeur de manga"
+        }
+    }
+]

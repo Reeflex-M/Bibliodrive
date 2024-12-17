@@ -1,9 +1,10 @@
 from django.contrib import admin
-from backoffice.models import Author, Publisher, Title
+from backoffice.models import Author, Publisher, Title, ReservationHistory
 from django.utils.html import format_html
 
 admin.site.register(Author)
 admin.site.register(Publisher)
+admin.site.register(ReservationHistory)
 
 class TitleAdmin(admin.ModelAdmin):
     list_display = ('title', 'year_published', 'isbn', 'pubid', 'reserve_by', 'description', 'notes', 'subject', 'comments', 'image_preview')
