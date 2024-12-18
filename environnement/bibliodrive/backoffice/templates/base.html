@@ -59,6 +59,13 @@
                 <i class="fas fa-music text-slate-400 group-hover:text-indigo-600 transition-colors duration-200"></i>
                 <span>Musique</span>
               </button>
+              <!-- Modification du contrôle de volume pour le masquer par défaut -->
+              <div id="volumeContainer" class="hidden flex items-center space-x-2">
+                <i class="fas fa-volume-down text-slate-400"></i>
+                <input type="range" id="volumeControl" min="0" max="100" value="50"
+                  class="w-20 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                <i class="fas fa-volume-up text-slate-400"></i>
+              </div>
 
               <!-- Ajouter l'élément audio (caché) -->
               <audio id="backgroundMusic" style="display: none;">
@@ -118,10 +125,20 @@
     document.addEventListener('DOMContentLoaded', function () {
       const musicToggle = document.getElementById('musicToggle');
       const backgroundMusic = document.getElementById('backgroundMusic');
+      const volumeControl = document.getElementById('volumeControl');
+      const volumeContainer = document.getElementById('volumeContainer');
       let isPlaying = false;
 
       // Préchargement de l'audio
       backgroundMusic.load();
+
+      // Initialisation du volume
+      backgroundMusic.volume = volumeControl.value / 100;
+
+      // Gestion du volume
+      volumeControl.addEventListener('input', function () {
+        backgroundMusic.volume = this.value / 100;
+      });
 
       // Gestion des erreurs
       backgroundMusic.addEventListener('error', function (e) {
@@ -145,9 +162,11 @@
         if (playing) {
           icon.classList.remove('text-slate-400');
           icon.classList.add('text-indigo-600');
+          volumeContainer.classList.remove('hidden'); // Afficher le contrôle du volume
         } else {
           icon.classList.remove('text-indigo-600');
           icon.classList.add('text-slate-400');
+          volumeContainer.classList.add('hidden'); // Masquer le contrôle du volume
         }
       }
 
