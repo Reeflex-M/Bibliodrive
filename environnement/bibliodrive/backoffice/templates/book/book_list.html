@@ -241,29 +241,7 @@
             }
         }
 
-        function showMessage(message, isError = false) {
-            const messageDiv = document.getElementById('message-div') || (() => {
-                const div = document.createElement('div');
-                div.id = 'message-div';
-                div.className = 'fixed top-4 right-4 z-50 transition-all duration-500 transform';
-                document.body.appendChild(div);
-                return div;
-            })();
-
-            const alert = document.createElement('div');
-            alert.className = `p-4 rounded-lg shadow-lg mb-4 transition-all duration-500 transform ${isError ? 'bg-red-500' : 'bg-green-500'
-                } text-white`;
-            alert.textContent = message;
-
-            messageDiv.appendChild(alert);
-            setTimeout(() => {
-                alert.style.opacity = '0';
-                setTimeout(() => alert.remove(), 500);
-            }, 3000);
-        }
-
         function makeReservation(isbn) {
-            // Mise à jour de l'URL
             fetch(`/api/books/${isbn}/reserve/`, {
                 method: 'POST',
                 headers: {
@@ -276,19 +254,14 @@
                 .then(data => {
                     if (data.success) {
                         updateBookCard(isbn, data);
-                        showMessage(data.message);
-                    } else {
-                        showMessage(data.message, true);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showMessage('Une erreur est survenue', true);
                 });
         }
 
         function cancelReservation(isbn) {
-            // Mise à jour de l'URL
             fetch(`/api/books/${isbn}/cancel/`, {
                 method: 'POST',
                 headers: {
@@ -301,14 +274,10 @@
                 .then(data => {
                     if (data.success) {
                         updateBookCard(isbn, data);
-                        showMessage(data.message);
-                    } else {
-                        showMessage(data.message, true);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showMessage('Une erreur est survenue', true);
                 });
         }
     </script>
