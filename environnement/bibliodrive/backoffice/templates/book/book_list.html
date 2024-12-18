@@ -53,21 +53,21 @@
 
         <div class="flex">
             <!-- sidebar -->
-            <div class="w-64 mr-8 sticky top-4 self-start h-fit">
+            <div class="w-64 mr-8 fixed h-[calc(100vh-6rem)] overflow-y-auto">
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Genres</h2>
                     <ul class="space-y-2">
                         <li class="w-full">
                             <a href="{% url 'book-list' %}"
-                                class="block w-full px-3 py-2 rounded-md {% if not selected_genre %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %} truncate">
-                                Tous les livres
+                                class="block w-full px-3 py-2 rounded-md {% if not selected_genre %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
+                                <span class="whitespace-normal">Tous les livres</span>
                             </a>
                         </li>
                         {% for genre_code, genre_name in genres %}
                         <li class="w-full">
                             <a href="?genre={{ genre_code }}"
-                                class="block w-full px-3 py-2 rounded-md {% if selected_genre == genre_code %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %} text-sm">
-                                <span class="line-clamp-2">{{ genre_name }}</span>
+                                class="block w-full px-3 py-2 rounded-md {% if selected_genre == genre_code %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
+                                <span class="whitespace-normal text-sm leading-normal">{{ genre_name }}</span>
                             </a>
                         </li>
                         {% endfor %}
@@ -76,7 +76,7 @@
             </div>
 
             <!-- grid -->
-            <div class="flex-1">
+            <div class="flex-1 ml-72">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {% for book in objects %}
                     <div id="book-{{ book.isbn }}"
@@ -124,11 +124,13 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <p class="text-sm text-gray-600 flex items-center bg-gray-50 p-2 rounded-lg">
                                         <i class="fas fa-calendar w-5 text-teal-500"></i>
-                                        <span>{{ book.year_published }}</span>
+                                        <span class="ml-1">{{ book.year_published }}</span>
                                     </p>
-                                    <p class="text-sm text-gray-600 flex items-center bg-gray-50 p-2 rounded-lg">
-                                        <i class="fas fa-tag w-5 text-teal-500"></i>
-                                        <span>{{ book.subject }}</span>
+                                    <p class="text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
+                                        <span class="flex">
+                                            <i class="fas fa-tag w-5 text-teal-500"></i>
+                                            <span class="ml-1">{{ book.subject }}</span>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
