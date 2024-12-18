@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -51,6 +52,19 @@
                 <span>Historique Réservation</span>
               </a>
               {% endif %}
+
+              <!-- Ajouter le bouton de musique -->
+              <button id="musicToggle"
+                class="text-slate-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out flex items-center space-x-2 group">
+                <i class="fas fa-music text-slate-400 group-hover:text-indigo-600 transition-colors duration-200"></i>
+                <span>Musique</span>
+              </button>
+
+              <!-- Ajouter l'élément audio (caché) -->
+              <audio id="backgroundMusic" style="display: none;">
+                <source src="{% static 'musique/WakfuOp.mp3' %}" type="audio/mp3">
+                Votre navigateur ne supporte pas l'élément audio.
+              </audio>
             </div>
           </div>
         </div>
@@ -99,6 +113,59 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const musicToggle = document.getElementById('musicToggle');
+      const backgroundMusic = document.getElementById('backgroundMusic');
+      let isPlaying = false;
+
+      // Préchargement de l'audio
+      backgroundMusic.load();
+
+      // Gestion des erreurs
+      backgroundMusic.addEventListener('error', function (e) {
+        console.error('Erreur de chargement audio:', e);
+        alert('Impossible de charger la musique');
+      });
+
+      // Mise à jour du statut de lecture
+      backgroundMusic.addEventListener('playing', function () {
+        isPlaying = true;
+        updateMusicButtonStyle(true);
+      });
+
+      backgroundMusic.addEventListener('pause', function () {
+        isPlaying = false;
+        updateMusicButtonStyle(false);
+      });
+
+      function updateMusicButtonStyle(playing) {
+        const icon = musicToggle.querySelector('i');
+        if (playing) {
+          icon.classList.remove('text-slate-400');
+          icon.classList.add('text-indigo-600');
+        } else {
+          icon.classList.remove('text-indigo-600');
+          icon.classList.add('text-slate-400');
+        }
+      }
+
+      musicToggle.addEventListener('click', function () {
+        if (isPlaying) {
+          backgroundMusic.pause();
+        } else {
+          const playPromise = backgroundMusic.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.error('Erreur de lecture:', error);
+              alert('Impossible de lancer la lecture. Vérifiez que le fichier audio existe.');
+            });
+          }
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -178,18 +178,22 @@ def cancel_reserve_book(request, isbn):
 
 @login_required
 def book_historique(request):
-    reservations = ReservationHistory.objects.all()
-    context = {
-        'reservations': reservations,
-        'active_nav': 'historique'
-    }
-    
+    # Si l'utilisateur est un superuser, il voit tout l'historique
     if request.user.is_superuser:
-        
-        context.update({
+        reservations = ReservationHistory.objects.all()
+        context = {
+            'reservations': reservations,
+            'active_nav': 'historique',
             'available_books': Title.objects.all(),
             'users': User.objects.all()
-        })
+        }
+    else:
+        # Si c'est un utilisateur normal, il ne voit que son historique
+        reservations = ReservationHistory.objects.filter(user=request.user)
+        context = {
+            'reservations': reservations,
+            'active_nav': 'historique'
+        }
     
     return render(request, 'book/book_historique.html', context)
 

@@ -31,4 +31,4 @@ urlpatterns = [
     
     path('api/books/<str:isbn>/reserve/', views.reserve_book, name='reserve-book'),
     path('api/books/<str:isbn>/cancel/', views.cancel_reserve_book, name='cancel-reserve-book'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
