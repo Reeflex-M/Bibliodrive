@@ -75,7 +75,7 @@ class ReservationHistory(models.Model):
     status = models.CharField(max_length=20, choices=[
         ('ACTIVE', 'Active'),
         ('CANCELLED', 'Annulée'),
-        ('ADMIN_CANCELLED', 'Annulée par admin')  # Nouveau statut
+        ('ADMIN_CANCELLED', 'Annulée par admin')  
     ])
 
     class Meta:

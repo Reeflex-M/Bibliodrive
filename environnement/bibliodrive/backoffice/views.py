@@ -31,7 +31,7 @@ def registration(request):
     return render(request, template_name='registration/registration.html', context={ 'active_nav':'registration'})
 
 
-@csrf_exempt  # Désactive la protection CSRF pour cette vue
+@csrf_exempt  
 def register_view(request):
     if request.method == 'POST':
         if request.content_type == 'application/json':
@@ -81,7 +81,7 @@ def author_list(request):
 
 
 #book views
-def book_detail(request, isbn):  # utiliser isbn au lieu de book_id
+def book_detail(request, isbn): 
     book = get_object_or_404(Title, isbn=isbn)
     return render(request, 'book/book_detail.html', {'book': book})
 
@@ -92,7 +92,7 @@ def book_list(request):
     if selected_genre:
         objects = objects.filter(genre=selected_genre)
     
-    # Ajouter le nombre de réservations actives de l'utilisateur
+    
     user_reservation_count = 0
     if request.user.is_authenticated:
         user_reservation_count = Title.get_active_reservations_count(request.user)
@@ -102,7 +102,7 @@ def book_list(request):
         'active_nav': 'book',
         'genres': Title.GENRE_CHOICES,
         'selected_genre': selected_genre,
-        'user_reservation_count': user_reservation_count  # Nouvelle variable
+        'user_reservation_count': user_reservation_count  
     }
     return render(request, template_name='book/book_list.html', context=context)
 
@@ -177,7 +177,7 @@ def book_historique(request):
     }
     
     if request.user.is_superuser:
-        # Ajouter les livres disponibles et les utilisateurs au contexte
+        
         context.update({
             'available_books': Title.objects.all(),
             'users': User.objects.all()
