@@ -5,7 +5,7 @@
 {% block content %}
 <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-[480px] bg-white rounded-xl shadow-lg p-8 h-[480px] space-y-8">
-        <!-- Logo/Titre -->
+        <!--head-->
         <div class="text-center">
             <i class="fas fa-book-open text-indigo-600 text-4xl mb-4"></i>
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -16,7 +16,7 @@
             </p>
         </div>
 
-        <!-- Form  -->
+        <!-- form  -->
         <form class="mt-8 space-y-6" method="POST">
             {% csrf_token %}
             <div class="rounded-md shadow-sm space-y-4">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <!-- Champ mdp -->
+                <!-- champ mdp -->
                 <div>
                     <label for="password" class="sr-only">Mot de passe</label>
                     <div class="relative">

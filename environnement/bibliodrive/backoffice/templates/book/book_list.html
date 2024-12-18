@@ -175,11 +175,11 @@
         </div>
     </div>
 
-    <!-- Script searchbar -->
+    <!-- searchbar -->
     <script>
         document.getElementById('searchInput').addEventListener('keyup', function () {
             const searchValue = this.value.toLowerCase();
-            const bookCards = document.querySelectorAll('.group.bg-white'); // Sélectionne toutes les cartes de livres
+            const bookCards = document.querySelectorAll('.group.bg-white'); // prend toutes les cartes des livvres
 
             bookCards.forEach(card => {
                 const title = card.querySelector('h3').textContent.toLowerCase();
