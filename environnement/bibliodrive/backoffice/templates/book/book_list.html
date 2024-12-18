@@ -36,14 +36,19 @@
 
         <!-- recherche barre -->
         <div class="max-w-7xl mx-auto mb-8">
-            <div class="relative">
-                <input type="text" id="searchInput"
-                    class="w-full px-6 py-4 bg-white rounded-xl shadow-lg pl-14 pr-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-200"
-                    placeholder="Rechercher un livre par titre, année, sujet...">
-                <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search text-xl"></i>
+            <form method="GET" action="{% url 'book-list' %}">
+                <div class="relative">
+                    <input type="text" name="q" value="{{ request.GET.q }}"
+                        class="w-full px-6 py-4 bg-white rounded-xl shadow-lg pl-14 pr-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-200"
+                        placeholder="Rechercher un livre par titre, année, sujet...">
+                    <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-search text-xl"></i>
+                    </div>
+                    {% if selected_genre %}
+                    <input type="hidden" name="genre" value="{{ selected_genre }}">
+                    {% endif %}
                 </div>
-            </div>
+            </form>
         </div>
 
         <div class="flex">
@@ -52,17 +57,17 @@
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Genres</h2>
                     <ul class="space-y-2">
-                        <li>
+                        <li class="w-full">
                             <a href="{% url 'book-list' %}"
-                                class="block px-4 py-2 rounded-md {% if not selected_genre %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
+                                class="block w-full px-3 py-2 rounded-md {% if not selected_genre %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %} truncate">
                                 Tous les livres
                             </a>
                         </li>
                         {% for genre_code, genre_name in genres %}
-                        <li>
+                        <li class="w-full">
                             <a href="?genre={{ genre_code }}"
-                                class="block px-4 py-2 rounded-md {% if selected_genre == genre_code %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %}">
-                                {{ genre_name }}
+                                class="block w-full px-3 py-2 rounded-md {% if selected_genre == genre_code %}bg-blue-500 text-white{% else %}hover:bg-gray-100{% endif %} text-sm">
+                                <span class="line-clamp-2">{{ genre_name }}</span>
                             </a>
                         </li>
                         {% endfor %}
@@ -75,9 +80,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {% for book in objects %}
                     <div id="book-{{ book.isbn }}"
-                        class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+                        class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full">
                         <!-- img -->
-                        <div class="relative w-full h-64 bg-gray-50 overflow-hidden">
+                        <div class="relative w-full h-64 bg-gray-50 overflow-hidden flex-shrink-0">
                             {% if book.image %}
                             <div
                                 class="absolute inset-0 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center p-4">
@@ -93,17 +98,17 @@
                             {% endif %}
                         </div>
 
-                        <!-- card -->
-                        <div class="p-6 space-y-4">
+                        <!-- card content -->
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3
-                                class="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                                class="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 mb-4">
                                 {{ book.title }}
                             </h3>
 
-                            <div class="space-y-4">
+                            <div class="flex-grow">
                                 <!-- note -->
                                 {% if book.notes %}
-                                <div class="relative bg-gradient-to-r from-blue-50 to-teal-50 p-4 rounded-xl">
+                                <div class="relative bg-gradient-to-r from-blue-50 to-teal-50 p-4 rounded-xl mb-4">
                                     <div
                                         class="absolute -top-2 -left-2 w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center transform -rotate-12">
                                         <i class="fas fa-quote-right text-white"></i>
@@ -129,7 +134,7 @@
                             </div>
 
                             <!-- btn actions-->
-                            <div class="space-y-3 pt-2">
+                            <div class="space-y-3 pt-4 mt-auto">
                                 <a href="{% url 'book-detail' book.isbn %}"
                                     class="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-teal-700 transform hover:-translate-y-0.5 transition-all duration-200">
                                     <i class="fas fa-info-circle mr-2"></i>
@@ -174,37 +179,6 @@
             </div>
         </div>
     </div>
-
-    <!-- searchbar -->
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function () {
-            const searchValue = this.value.toLowerCase();
-            const bookCards = document.querySelectorAll('.group.bg-white'); // prend toutes les cartes des livvres
-
-            bookCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const year = card.querySelector('.fa-calendar').parentElement.textContent.toLowerCase();
-                const subject = card.querySelector('.fa-tag').parentElement.textContent.toLowerCase();
-                const notes = card.querySelector('.italic')?.textContent.toLowerCase() || '';
-
-                if (title.includes(searchValue) ||
-                    year.includes(searchValue) ||
-                    subject.includes(searchValue) ||
-                    notes.includes(searchValue)) {
-                    card.style.display = '';
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 200);
-                }
-            });
-        });
-    </script>
-
 
     <script>
         function getCsrfToken() {

@@ -12,6 +12,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.views.decorators.http import require_POST
+from django.db.models import Q
 
 #accueil views
 def accueil(request):
@@ -87,11 +88,18 @@ def book_detail(request, isbn):
 
 def book_list(request):
     selected_genre = request.GET.get('genre', '')
+    search_query = request.GET.get('q', '')
     
     objects = Title.objects.all().order_by('title')
     if selected_genre:
         objects = objects.filter(genre=selected_genre)
-    
+    if search_query:  #filtrage objet
+        objects = objects.filter(
+            Q(title__icontains=search_query) |
+            Q(year_published__icontains=search_query) |
+            Q(subject__icontains=search_query) |
+            Q(notes__icontains=search_query)
+        )
     
     user_reservation_count = 0
     if request.user.is_authenticated:
