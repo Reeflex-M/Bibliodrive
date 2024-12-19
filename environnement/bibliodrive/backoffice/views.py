@@ -178,7 +178,6 @@ def cancel_reserve_book(request, isbn):
 
 @login_required
 def book_historique(request):
-    # Si l'utilisateur est un superuser, il voit tout l'historique
     if request.user.is_superuser:
         reservations = ReservationHistory.objects.all()
         context = {
@@ -188,7 +187,6 @@ def book_historique(request):
             'users': User.objects.all()
         }
     else:
-        # Si c'est un utilisateur normal, il ne voit que son historique
         reservations = ReservationHistory.objects.filter(user=request.user)
         context = {
             'reservations': reservations,
@@ -224,7 +222,6 @@ def delete_reservation(request, reservation_id):
             book = reservation.book
             book.reserve_by = None
             book.save()
-            # Au lieu de supprimer, on met à jour le statut
             reservation.status = 'ADMIN_CANCELLED'
             reservation.cancelled_at = timezone.now()
             reservation.save()
